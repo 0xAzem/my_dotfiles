@@ -1,0 +1,88 @@
+{
+  "layer": "top",
+  "position": "left",
+  "mod": "dock",
+  "gtk-layer-shell": true,
+  "height": 200,
+  "margin-left": 10,
+  "modules-center": ["wlr/workspaces", "custom/spotify", "network", "pulseaudio", "pulseaudio#percentage", "custom/calendar-icon", "clock", "clock#date", "custom/time-icon", "clock#time"],
+    // Modules configuration
+
+  "include": [
+      "~/.config/HyprV/waybar/conf/hyprv-util.jsonc"
+  ],
+
+  "wlr/workspaces": {
+	"format": "{icon}",
+    "on-click": "activate",
+    "sort-by-name": true,
+    "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "6": "",
+            "7": "",
+            "8": "",
+            "9": ""
+         }
+     },
+  "custom/spotify": {
+    "format": "",
+    "interval": 1,
+    "exec-if": "pgrep spotify",
+    "return-type": "json", 
+    "on-click": "playerctl -p spotify play-pause",
+    "on-scroll-up": "playerctl -p spotify previous",
+    "on-scroll-down": "playerctl -p spotify next", 
+    "tooltip": true,
+    "escape": true,
+    "exec": "/home/azem/.config/HyprV/waybar/scripts/spotify_v5.sh"
+  },
+  "network": {
+    "format-wifi": "",
+    "format-ethernet": "",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "",
+	"tooltip-format-wifi": "{essid}",
+	"tooltip-format-disconnected": "Disconnected"
+  },
+  "pulseaudio": {
+	"on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+	"format": "{icon}",
+    "format-muted": "",
+    "format-icons": {
+        "headphone": "",
+        "hands-free": "",
+        "headset": "",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": ["", ""]
+    }
+  },
+  "pulseaudio#percentage": {
+	"on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+	"format": "{volume}"
+  },
+  "custom/calendar-icon": {
+    "format": "",
+    "tooltip": false
+  },
+  "clock": {
+	"format": "{:%a}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+  "clock#date": {
+	"format": "{:%d}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+  "custom/time-icon": {
+    "format": "",
+    "tooltip": false
+  },
+  "clock#time": {
+	"format": "{:%H\n%M}"
+  }
+}
